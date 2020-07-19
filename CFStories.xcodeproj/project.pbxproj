@@ -14,6 +14,9 @@
 		D803F98B24C3D35D0096592A /* CFStoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F98A24C3D35D0096592A /* CFStoriesTests.swift */; };
 		D803F99624C3D35D0096592A /* CFStoriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F99524C3D35D0096592A /* CFStoriesUITests.swift */; };
 		D803F9AE24C3F0690096592A /* mockData.json in Resources */ = {isa = PBXBuildFile; fileRef = D803F9AD24C3F0690096592A /* mockData.json */; };
+		D803F9B624C4017B0096592A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F9B524C4017B0096592A /* Data.swift */; };
+		D803F9B824C40A570096592A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F9B724C40A570096592A /* ImageLoader.swift */; };
+		D803F9BC24C45A510096592A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F9BB24C45A510096592A /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		D803F99524C3D35D0096592A /* CFStoriesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFStoriesUITests.swift; sourceTree = "<group>"; };
 		D803F99724C3D35D0096592A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D803F9AD24C3F0690096592A /* mockData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mockData.json; sourceTree = "<group>"; };
+		D803F9B524C4017B0096592A /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D803F9B724C40A570096592A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		D803F9BB24C45A510096592A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,9 @@
 			children = (
 				D803F97824C3D35A0096592A /* CFStoriesApp.swift */,
 				D803F97A24C3D35A0096592A /* ContentView.swift */,
+				D803F9BB24C45A510096592A /* Helpers.swift */,
+				D803F9B724C40A570096592A /* ImageLoader.swift */,
+				D803F9B524C4017B0096592A /* Data.swift */,
 				D803F9AD24C3F0690096592A /* mockData.json */,
 				D803F97C24C3D35D0096592A /* Assets.xcassets */,
 				D803F98124C3D35D0096592A /* Info.plist */,
@@ -264,6 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D803F97B24C3D35A0096592A /* ContentView.swift in Sources */,
+				D803F9B624C4017B0096592A /* Data.swift in Sources */,
+				D803F9B824C40A570096592A /* ImageLoader.swift in Sources */,
+				D803F9BC24C45A510096592A /* Helpers.swift in Sources */,
 				D803F97924C3D35A0096592A /* CFStoriesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
