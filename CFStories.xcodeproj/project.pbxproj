@@ -13,6 +13,7 @@
 		D803F98024C3D35D0096592A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D803F97F24C3D35D0096592A /* Preview Assets.xcassets */; };
 		D803F98B24C3D35D0096592A /* CFStoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F98A24C3D35D0096592A /* CFStoriesTests.swift */; };
 		D803F99624C3D35D0096592A /* CFStoriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F99524C3D35D0096592A /* CFStoriesUITests.swift */; };
+		D803F9AE24C3F0690096592A /* mockData.json in Resources */ = {isa = PBXBuildFile; fileRef = D803F9AD24C3F0690096592A /* mockData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		D803F99124C3D35D0096592A /* CFStoriesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CFStoriesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D803F99524C3D35D0096592A /* CFStoriesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFStoriesUITests.swift; sourceTree = "<group>"; };
 		D803F99724C3D35D0096592A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D803F9AD24C3F0690096592A /* mockData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mockData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				D803F97824C3D35A0096592A /* CFStoriesApp.swift */,
 				D803F97A24C3D35A0096592A /* ContentView.swift */,
+				D803F9AD24C3F0690096592A /* mockData.json */,
 				D803F97C24C3D35D0096592A /* Assets.xcassets */,
 				D803F98124C3D35D0096592A /* Info.plist */,
 				D803F97E24C3D35D0096592A /* Preview Content */,
@@ -235,6 +238,7 @@
 			files = (
 				D803F98024C3D35D0096592A /* Preview Assets.xcassets in Resources */,
 				D803F97D24C3D35D0096592A /* Assets.xcassets in Resources */,
+				D803F9AE24C3F0690096592A /* mockData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +423,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CFStories/Preview Content\"";
-				DEVELOPMENT_TEAM = 9TRUV83B39;
+				DEVELOPMENT_TEAM = 9AL899TPVP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CFStories/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -441,7 +445,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CFStories/Preview Content\"";
-				DEVELOPMENT_TEAM = 9TRUV83B39;
+				DEVELOPMENT_TEAM = 9AL899TPVP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CFStories/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
