@@ -7,14 +7,33 @@
 
 import SwiftUI
 import AVKit
+import VideoPlayer
+
+struct ProgressBar: View {
+    @Binding var progress: Float
+    
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .stroke(lineWidth: 5.0)
+                .opacity(0.3)
+                .foregroundColor(Color.white)
+        }
+    }
+}
 
 struct ContentView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var productsData = [Product]()
-    @State private var cardIsExpanded: Bool = false
+    @State private var expanded: Bool = false
     @State private var selectedStory = [Story]()
     @State private var allStories = [Story]()
-    
+    @State private var playVideo: Bool = true
+    @State private var time: CMTime = .zero
+    @State private var progressValue: Float = 22.0
+
     @Environment(\.imageCache) var cache: ImageCache
     
     let columns = [
@@ -28,16 +47,23 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 24) {
+            VStack() {
                 GridViewHeader()
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 24) {
+                    LazyVGrid(columns: columns) {
                         ForEach(productsData) { product in
                             ForEach(product.stories) { story in
                                ImageCard(product: product, story: story)
+                                .scaleEffect(0.95)
                                 .onTapGesture {
-                                    
+                                    expanded.toggle()
                                 }
+                                .sheet(isPresented: $expanded) {
+                                    WelcomeVideo(url: URL(string: story.videoURL)!)
+                                        .offset(y: -40)
+                                }
+
+        
                             }
                         }
                     }
