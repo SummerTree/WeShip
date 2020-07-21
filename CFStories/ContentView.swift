@@ -10,78 +10,45 @@ import AVKit
 
 struct ContentView: View {
     
-    @State private var productsData = [Response.Product]()
+    @State private var productsData = [Product]()
     @State private var cardIsExpanded: Bool = false
-    @State private var selectedStory = [Response.Story]()
+    @State private var selectedStory = [Story]()
+    @State private var allStories = [Story]()
+    
+    @Environment(\.imageCache) var cache: ImageCache
     
     let columns = [
-        GridItem(.flexible(minimum: 24)),
-        GridItem(.flexible(minimum: 24))
+        GridItem(.flexible()),
+        GridItem(.flexible())
     ]
     
-    static let taskDateFormat: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            return formatter
-        }()
-    
+    private let playerLayer = AVPlayerLayer()
+        
     var today = Date()
 
     var body: some View {
         NavigationView {
-            if cardIsExpanded {
-                VideoPlayer(player: AVPlayer(url:  URL(string: self.selectedStory.first!.videoURL)!))
-            }
-            else {
-                ScrollView(.vertical) {
-                LazyVGrid(columns: columns, alignment: .center, spacing: 24) {
-                    ForEach(self.productsData) { product in
-                        ForEach(product.stories) { story in
-                            VStack{
-                                ZStack(alignment: .bottomLeading) {
-                                    AsyncImage(
-                                        url: URL(string: story.thumbnailURL)!,
-                                        placeholder: Text("☁️").font(.largeTitle))
-                                            .aspectRatio(contentMode: .fit)
-                                    Rectangle()
-                                        .fill(LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top))
-                                        .opacity(0.65)
-                                    VStack(alignment: HorizontalAlignment.leading, spacing: 4.0) {
-                                        HStack {
-                                            Text(product.name)
-                                                .foregroundColor(.white)
-                                                .font(.system(.title3, design: .rounded))
-                                                .fontWeight(.heavy)
-                                        }
-                                        HStack {
-                                            Image(systemName: "play.circle.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(Calendar.current.dateComponents([.day], from: Self.taskDateFormat.date(from: story.createdAt)!, to: Date()).day!) days ago")
-                                                .foregroundColor(Color(UIColor.lightGray))
-                                                .fontWeight(.heavy)
-                                        }
-                                        .font(.system(.caption2, design: .monospaced))
-                                    }
-                                    .padding(.leading)
-                                    .padding(.bottom)
-                                    }
-                                }
-                                .cornerRadius(25) // zstack
+            VStack(spacing: 24) {
+                GridViewHeader()
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 24) {
+                        ForEach(productsData) { product in
+                            ForEach(product.stories) { story in
+                               ImageCard(product: product, story: story)
                                 .onTapGesture {
-                                    HapticFeedback.playSelection()
-                                    withAnimation {
-                                        self.selectedStory.append(story)
-                                        self.cardIsExpanded.toggle()
-                                    }
+                                    
                                 }
                             }
                         }
                     }
                 }
             }
+            .padding(.horizontal, 24)
+            .navigationTitle("WeShip")
         }
-        .navigationTitle("WeShip")
-        .onAppear(perform: {loadData()})
+        .onAppear {
+            loadData()
+        }
     }
     
     func loadData() {
@@ -103,6 +70,7 @@ struct ContentView: View {
             let decoder = JSONDecoder()
             let responseData = try! decoder.decode(Response.self, from: data)
             self.productsData = responseData.products
+            responseData.products.forEach({self.allStories.append(contentsOf: $0.stories)})
             return
         }.resume()
 

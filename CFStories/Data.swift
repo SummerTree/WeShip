@@ -24,24 +24,24 @@ struct Response: Codable, Hashable {
         }
     }
     
-    struct Product: Codable, Hashable, Identifiable {
-        
-        static func == (lhs: Response.Product, rhs: Response.Product) -> Bool {
-            return lhs.name == rhs.name
-        }
-        
-        let id: String
-        let name: String
-        let logo: String
-        let stories: [Story]
+}
+
+struct Product: Codable, Hashable, Identifiable {
+    
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.name == rhs.name
     }
     
-    struct Story: Codable, Hashable, Identifiable {
-        let id: String
-        let productId: String
-        let createdAt: String
-        let thumbnailURL: String
-        let videoURL: String
-    }
-    
+    let id: String
+    let name: String
+    let logo: String
+    var stories: [Story]
+}
+
+struct Story: Codable, Hashable, Identifiable {
+    let id: String
+    let productId: String
+    let createdAt: String
+    let thumbnailURL: String
+    let videoURL: String
 }

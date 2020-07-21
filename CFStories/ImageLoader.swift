@@ -9,6 +9,8 @@ import SwiftUI
 import Combine
 
 class ImageLoader: ObservableObject {
+    
+    private var cache: ImageCache?
     @Published var image: UIImage?
     private let url: URL
     private var cancellable: AnyCancellable?
@@ -18,6 +20,12 @@ class ImageLoader: ObservableObject {
     }
     
     func load() {
+        
+        if let image = cache?[url] {
+            self.image = image
+            return
+        }
+
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
             .map { UIImage(data: $0.data) }
             .replaceError(with: nil)
@@ -28,14 +36,25 @@ class ImageLoader: ObservableObject {
     func cancel() {
         cancellable?.cancel()
     }
+
+    init(url: URL, cache: ImageCache? = nil) {
+       self.url = url
+       self.cache = cache
+    }
+       
+    private func cache(_ image: UIImage?) {
+        image.map { cache?[url] = $0 }
+    }
+    
 }
 
 struct AsyncImage<Placeholder: View>: View {
+    
     @ObservedObject private var loader: ImageLoader
     private let placeholder: Placeholder?
     
-    init(url: URL, placeholder: Placeholder? = nil) {
-        loader = ImageLoader(url: url)
+    init(url: URL, placeholder: Placeholder? = nil, cache: ImageCache? = nil) {
+        loader = ImageLoader(url: url, cache: cache)
         self.placeholder = placeholder
     }
 
@@ -55,4 +74,28 @@ struct AsyncImage<Placeholder: View>: View {
                }
            }
        }
+}
+
+protocol ImageCache {
+    subscript(_ url: URL) -> UIImage? { get set }
+}
+
+struct TemporaryImageCache: ImageCache {
+    private let cache = NSCache<NSURL, UIImage>()
+    
+    subscript(_ key: URL) -> UIImage? {
+        get { cache.object(forKey: key as NSURL) }
+        set { newValue == nil ? cache.removeObject(forKey: key as NSURL) : cache.setObject(newValue!, forKey: key as NSURL) }
+    }
+}
+
+struct ImageCacheKey: EnvironmentKey {
+    static let defaultValue: ImageCache = TemporaryImageCache()
+}
+
+extension EnvironmentValues {
+    var imageCache: ImageCache {
+        get { self[ImageCacheKey.self] }
+        set { self[ImageCacheKey.self] = newValue }
+    }
 }
