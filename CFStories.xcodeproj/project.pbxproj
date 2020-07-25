@@ -19,6 +19,8 @@
 		D803F9BC24C45A510096592A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803F9BB24C45A510096592A /* Helpers.swift */; };
 		D887A38924C5671100D758CF /* GridViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D887A38824C5671100D758CF /* GridViewHeader.swift */; };
 		D8E4A0FD24C79BF600D6B3B3 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4A0FC24C79BF600D6B3B3 /* BackgroundView.swift */; };
+		D8E4A0FF24C7AF2800D6B3B3 /* ProgressRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4A0FE24C7AF2800D6B3B3 /* ProgressRect.swift */; };
+		D8E4A10524C7BE2400D6B3B3 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4A10424C7BE2400D6B3B3 /* VideoView.swift */; };
 		D8F9913724C6C4A300B2AD5F /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F9913624C6C4A300B2AD5F /* ImageCard.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		D803F9BB24C45A510096592A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		D887A38824C5671100D758CF /* GridViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewHeader.swift; sourceTree = "<group>"; };
 		D8E4A0FC24C79BF600D6B3B3 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		D8E4A0FE24C7AF2800D6B3B3 /* ProgressRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRect.swift; sourceTree = "<group>"; };
+		D8E4A10424C7BE2400D6B3B3 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		D8F9913624C6C4A300B2AD5F /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +116,8 @@
 				D803F97824C3D35A0096592A /* CFStoriesApp.swift */,
 				D803F97A24C3D35A0096592A /* ContentView.swift */,
 				D8E4A0FC24C79BF600D6B3B3 /* BackgroundView.swift */,
+				D8E4A10424C7BE2400D6B3B3 /* VideoView.swift */,
+				D8E4A0FE24C7AF2800D6B3B3 /* ProgressRect.swift */,
 				D8F9913624C6C4A300B2AD5F /* ImageCard.swift */,
 				D887A38824C5671100D758CF /* GridViewHeader.swift */,
 				D803F9BB24C45A510096592A /* Helpers.swift */,
@@ -285,11 +291,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E4A0FF24C7AF2800D6B3B3 /* ProgressRect.swift in Sources */,
 				D803F97B24C3D35A0096592A /* ContentView.swift in Sources */,
 				D803F9B624C4017B0096592A /* Data.swift in Sources */,
 				D8E4A0FD24C79BF600D6B3B3 /* BackgroundView.swift in Sources */,
 				D803F9B824C40A570096592A /* ImageLoader.swift in Sources */,
 				D887A38924C5671100D758CF /* GridViewHeader.swift in Sources */,
+				D8E4A10524C7BE2400D6B3B3 /* VideoView.swift in Sources */,
 				D803F9BC24C45A510096592A /* Helpers.swift in Sources */,
 				D803F97924C3D35A0096592A /* CFStoriesApp.swift in Sources */,
 				D8F9913724C6C4A300B2AD5F /* ImageCard.swift in Sources */,

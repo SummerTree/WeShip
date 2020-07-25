@@ -28,7 +28,11 @@ struct WelcomeVideo_Previews: PreviewProvider {
 }
 
 final class WelcomeVideoController : UIViewControllerRepresentable {
+    
     var playerLooper: AVPlayerLooper?
+    var elapsedTime: CMTime = .zero
+    var totalDuration: CMTime = .zero
+    var player: AVPlayer?
     var url: URL?
     
     init(url: URL) {
@@ -37,19 +41,28 @@ final class WelcomeVideoController : UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<WelcomeVideoController>) ->
         AVPlayerViewController {
+        
             let controller = AVPlayerViewController()
-
+            controller.showsPlaybackControls = false
+            
             let asset = AVURLAsset(url: url!)
+            totalDuration = asset.duration
             let playerItem = AVPlayerItem(asset: asset)
             let queuePlayer = AVQueuePlayer()
-            // OR let queuePlayer = AVQueuePlayer(items: [playerItem]) to pass in items
+//             OR let queuePlayer = AVQueuePlayer(items: [playerItem]) to pass in items
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+//            player = AVPlayer(playerItem: playerItem)
+        
+//            player?.play()
+//            controller.player = player
             queuePlayer.play()
             controller.player = queuePlayer
             
 
             return controller
         }
+    
+    
 
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: UIViewControllerRepresentableContext<WelcomeVideoController>) {
     }

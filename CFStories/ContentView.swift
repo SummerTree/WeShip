@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import VideoPlayer
 
 struct ProgressBar: View {
     @Binding var progress: Float
@@ -33,18 +32,18 @@ struct ContentView: View {
     @State private var playVideo: Bool = true
     @State private var time: CMTime = .zero
     @State private var progressValue: Float = 22.0
+    @State private var timerObjects = [StoryTimer]()
+    
+    var imageNames:[String] = ["image01","image02","image03","image04"]
 
     @Environment(\.imageCache) var cache: ImageCache
+    @ObservedObject var storyTimer: StoryTimer = StoryTimer(items: 4, interval: 4.0)
     
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    private let playerLayer = AVPlayerLayer()
-        
-    var today = Date()
-
+            
     var body: some View {
         NavigationView {
             VStack() {
@@ -53,17 +52,15 @@ struct ContentView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(productsData) { product in
                             ForEach(product.stories) { story in
-                               ImageCard(product: product, story: story)
-                                .scaleEffect(0.95)
-                                .onTapGesture {
-                                    expanded.toggle()
-                                }
-                                .sheet(isPresented: $expanded) {
-                                    WelcomeVideo(url: URL(string: story.videoURL)!)
-                                        .offset(y: -40)
-                                }
-
-        
+                                   ImageCard(product: product, story: story)
+                                    .scaleEffect(0.95)
+                                    .onTapGesture {
+                                        expanded.toggle()
+                                    }
+                                    .sheet(isPresented: $expanded) {
+//                                        VideoPlayerContainerView(story: story, items: story.metadata.pages.count)
+                                        WelcomeVideoController(url: URL(string: story.videoURL)!)
+                                    }
                             }
                         }
                     }
@@ -73,7 +70,8 @@ struct ContentView: View {
             .navigationTitle("WeShip")
         }
         .onAppear {
-            loadData()
+//            loadData()
+            self.productsData = Bundle.main.decode("mockData.json")
         }
     }
     
